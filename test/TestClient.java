@@ -39,7 +39,6 @@ public class TestClient implements Observer {
   @Test
   public void send() throws IOException{
     EchoClient client = new EchoClient();
-    client.registerObserver(this);
     client.connect("localhost",9090);
     client.send("Hello");
     assertEquals("HELLO", msg);

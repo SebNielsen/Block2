@@ -19,14 +19,14 @@ import java.util.logging.Logger;
  */
 public class UserInterface extends javax.swing.JFrame implements Observer {
     
-    private static EchoClient client = new EchoClient();
+    private EchoClient client = new EchoClient();
     /**
      * Creates new form UserInterface
      */
     public UserInterface() throws IOException {
         initComponents();
         client.connect("localhost", 9090);
-        client.registerObserver(this);
+        client.addObserver(this);
     }
 
     /**

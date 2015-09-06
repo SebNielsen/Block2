@@ -21,9 +21,7 @@ public class EchoClient extends Observable implements Runnable {
     private InetAddress serverAddress;
     private Scanner input;
     private PrintWriter output;
-    private List<Observer> observers = new ArrayList();
     private String msg = "";
-    private EchoClient client = this;
 
     public void connect(String address, int port) throws UnknownHostException, IOException {
         this.port = port;
@@ -34,12 +32,8 @@ public class EchoClient extends Observable implements Runnable {
         run();
     }
 
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
     public void send(String msg) {
-        output.println(msg);
+        output.println(this + msg);
     }
 
     public void stop() throws IOException {
@@ -59,9 +53,6 @@ public class EchoClient extends Observable implements Runnable {
                         } catch (IOException ex) {
                             Logger.getLogger(EchoClient.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }
-                    for (Observer observer : observers) {
-                        observer.update(client, msg);
                     }
                     setChanged();
                     notifyObservers(msg);
