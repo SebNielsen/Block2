@@ -20,7 +20,7 @@ import shared.ProtocolStrings;
 public class HandleClient extends Thread {
     private Socket socket;
     private Scanner input;
-    PrintWriter writer;
+    private PrintWriter writer;
     private EchoServer server;
     private String message;
     

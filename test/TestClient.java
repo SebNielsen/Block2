@@ -3,23 +3,22 @@ import echoserver.EchoServer;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Scanner;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * @author Lars Mortensen
- */
-public class TestClient implements Observer {
-  String msg;
-  public TestClient() {
+
+public class TestClient {
+ private Scanner input;
+    public TestClient() {
   }
   
   @BeforeClass
   public static void setUpClass() {
-    new Thread(new Runnable(){
+      new Thread(new Runnable(){
       @Override
       public void run() {
         EchoServer.main(null);
@@ -38,15 +37,10 @@ public class TestClient implements Observer {
   
   @Test
   public void send() throws IOException{
-    EchoClient client = new EchoClient();
-    client.connect("localhost",9090);
-    client.send("Hello");
-    assertEquals("HELLO", msg);
+    EchoClient tester = new EchoClient();
+    tester.connect("localhost", 9090);
+    input = tester.
+    tester.send("USER#Sebastian");
+    assertEquals("USERLIST#Sebastian", );
   }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        msg = (String) arg;
-    }
-
 }
